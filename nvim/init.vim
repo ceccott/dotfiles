@@ -25,9 +25,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Add-ons
 "Plug 'foo/bar', {'on':[]} " plugin disable example
-Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " autocomplete asynch framework
-Plug 'zchee/deoplete-jedi'  " jedi connection to deoplete
 Plug 'vim-airline/vim-airline' " status-bar customization
 Plug 'vim-airline/vim-airline-themes' " vim-airline additional themes
 Plug 'jiangmiao/auto-pairs'           " automatic brackets pairing
@@ -35,15 +32,9 @@ Plug 'tpope/vim-surround'             " quick surround extension
 Plug 'scrooloose/nerdcommenter'       " syntax-aware commenting and shortcuts
 Plug 'scrooloose/nerdtree'            " file manager and explorer
 Plug 'majutsushi/tagbar'              " function browser
-Plug 'ryanoasis/vim-devicons'         " file icons for the manager
-Plug 'neomake/neomake'                " code checker
 Plug 'tmhedberg/SimpylFold',{'on':[]} " code folding
 Plug 'tpope/vim-fugitive'             " embedded git support
 Plug 'vim-scripts/DoxygenToolkit.vim' " doxygen helper
-Plug 'ludovicchabant/vim-gutentags'   " tags manager
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " code completion
-Plug 'honza/vim-snippets'             " snippets db by language
-Plug 'SirVer/ultisnips'               " snippets engine
 
 " Styling
 Plug 'morhetz/gruvbox'
@@ -61,14 +52,6 @@ set ruler
 set relativenumber
 
 " - - - - - - - - - - - - - - - Plugins settings  - - - - - - - - - - - - - -
-" autocompletion
-let g:deoplete#enable_at_startup = 1
-" `custom_snippets` is located in ~/.config/nivm
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-
 " surround shortcuts mapping
 nmap <M-s> ysiw
 vmap <M-s> <S-s>
@@ -80,20 +63,6 @@ set diffopt+=vertical
 " toggle line comment on/off in normal and visual mode
 vnoremap `` :call NERDComment(0,"toggle")<C-m>
 nnoremap `` :call NERDComment(0,"toggle")<C-m>
-" disable autocompletion, cause we use deoplete for completion
-let g:jedi#completions_enabled = 0
-
-" open the go-to function in split, not another buffer
-let g:jedi#use_splits_not_buffers = "right"
-
-" code checking
-call neomake#configure#automake('w')               " calls neomake automatically on buffer write
-
-let g:neomake_cpplint_maker = {'args':['--filter=-whitespace/comments,-whitespace/comma,-runtime/explicit'] } " -whitespace/comma
-"let g:neomake_pylint_maker = {'args':['--extension-pkg-whitelist=zmq']}
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_cpp_enabled_makers = ['cpplint']
-let g:neomake_js_enabled_makers = ['jshint']
 
 " bookmarking
 highlight BookmarkSign ctermbg=NONE ctermfg=160
