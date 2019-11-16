@@ -33,6 +33,8 @@ Plug 'vim-airline/vim-airline-themes' " vim-airline additional themes
 Plug 'jiangmiao/auto-pairs'           " automatic brackets pairing
 Plug 'tpope/vim-surround'             " quick surround extension
 Plug 'scrooloose/nerdcommenter'       " syntax-aware commenting and shortcuts
+Plug 'leafgarland/typescript-vim'     " typescript syntax support
+
 Plug 'scrooloose/nerdtree'            " file manager and explorer
 Plug 'majutsushi/tagbar'              " function browser
 Plug 'ryanoasis/vim-devicons'         " file icons for the manager
