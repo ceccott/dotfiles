@@ -51,6 +51,7 @@ Plug 'SirVer/ultisnips'               " snippets engine
 Plug 'morhetz/gruvbox'
 Plug 'christoomey/vim-tmux-navigator' " tmux navigation compatibility
 Plug 'MattesGroeger/vim-bookmarks'    " enable lines bookmarking
+Plug 'nachumk/systemverilog.vim'      " verilog syntax
 
 call plug#end()
 
