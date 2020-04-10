@@ -21,13 +21,16 @@ xnoremap p pgvy             " multiple paste same buffer
 nnoremap <leader>s :set invspell<CR>
 
 " Plugins
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Add-ons
 "Plug 'foo/bar', {'on':[]} " plugin disable example
 Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " autocomplete asynch framework
+Plug 'ycm-core/YouCompleteMe'
 Plug 'zchee/deoplete-jedi'  " jedi connection to deoplete
+Plug 'OmniSharp/omnisharp-vim' "C# autocompletion
+"Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline' " status-bar customization
 Plug 'vim-airline/vim-airline-themes' " vim-airline additional themes
 Plug 'jiangmiao/auto-pairs'           " automatic brackets pairing
@@ -43,7 +46,6 @@ Plug 'tmhedberg/SimpylFold',{'on':[]} " code folding
 Plug 'tpope/vim-fugitive'             " embedded git support
 Plug 'vim-scripts/DoxygenToolkit.vim' " doxygen helper
 Plug 'ludovicchabant/vim-gutentags'   " tags manager
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " code completion
 Plug 'honza/vim-snippets'             " snippets db by language
 Plug 'SirVer/ultisnips'               " snippets engine
 
@@ -66,6 +68,8 @@ set relativenumber
 " - - - - - - - - - - - - - - - Plugins settings  - - - - - - - - - - - - - -
 " autocompletion
 let g:deoplete#enable_at_startup = 1
+let g:OmniSharp_server_stdio = 1
+
 " `custom_snippets` is located in ~/.config/nivm
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -106,7 +110,7 @@ let g:bookmark_highlight_lines = 1
 
 
 " ==== NERDTREE
-let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store']
+let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store', '\.meta']
 
 let NERDTreeShowHidden=1
 let g:NERDTreeWinPos="left"
