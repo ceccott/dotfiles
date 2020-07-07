@@ -64,6 +64,7 @@ let g:airline_theme='luna'                          " status-bar vim-airline the
 set background =dark
 set ruler
 set relativenumber
+hi Normal ctermbg=none
 
 " - - - - - - - - - - - - - - - Plugins settings  - - - - - - - - - - - - - -
 " autocompletion
