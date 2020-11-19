@@ -15,8 +15,8 @@ echo "pkg install done ..."
 
 
 # git config
-git config --global user.name ceccott
-git config --global user.email ceccott@gmail.com
+#git config --global user.name <uname>
+#git config --global user.email <email>
 
 # 3rd party repos
 cd ~
@@ -31,7 +31,7 @@ echo "3rd party done ..."
 
 
 # python packages
-pip3 install numpy scipy pandas matplotlib seaborn jinja2 ipython jupyterlab 
+pip3 install numpy scipy pandas matplotlib seaborn jinja2 ipython jupyterlab
 
 #linking
 
