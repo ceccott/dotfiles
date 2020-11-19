@@ -30,6 +30,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " autocomplete as
 Plug 'ycm-core/YouCompleteMe'
 Plug 'zchee/deoplete-jedi'  " jedi connection to deoplete
 Plug 'OmniSharp/omnisharp-vim' "C# autocompletion
+
+Plug 'ervandew/supertab'        " supertab
+
 "Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline' " status-bar customization
 Plug 'vim-airline/vim-airline-themes' " vim-airline additional themes
@@ -51,6 +54,7 @@ Plug 'SirVer/ultisnips'               " snippets engine
 
 " Styling
 Plug 'morhetz/gruvbox'
+Plug 'chrisbra/colorizer'
 Plug 'christoomey/vim-tmux-navigator' " tmux navigation compatibility
 Plug 'MattesGroeger/vim-bookmarks'    " enable lines bookmarking
 Plug 'nachumk/systemverilog.vim'      " verilog syntax
@@ -64,17 +68,25 @@ let g:airline_theme='luna'                          " status-bar vim-airline the
 set background =dark
 set ruler
 set relativenumber
-
+"set t_Co=256
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
 " - - - - - - - - - - - - - - - Plugins settings  - - - - - - - - - - - - - -
 " autocompletion
 let g:deoplete#enable_at_startup = 1
 let g:OmniSharp_server_stdio = 1
 
 " `custom_snippets` is located in ~/.config/nivm
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
 let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " surround shortcuts mapping
 nmap <M-s> ysiw

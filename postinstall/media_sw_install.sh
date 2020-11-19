@@ -30,7 +30,7 @@ apt install -y ./skypeforlinux-64.deb
 wget https://zoom.us/client/latest/zoom_amd64.deb
 apt install -y ./zoom_amd64.deb
 wget https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb
-dpkg -i dropbox_2020.03.04_amd64.deb
+dpkg -i download\?dl=packages%2Fubuntu%2Fdropbox_2020.03.04_amd64.deb 
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 apt-get update && sudo apt-get install -y spotify-client
