@@ -4,7 +4,7 @@
 apt-get update
 
 
-DEV_TOOLS="vim neovim git tmux ctags sshfs tmuxinator cmake python python3-pip nodejs ghex dconf-cli uuid-runtime\
+DEV_TOOLS="vim neovim git tmux exuberant-ctags sshfs tmuxinator cmake python python3-pip nodejs ghex dconf-cli uuid-runtime\
  zsh meld"
 
 apt-get install $DEV_TOOLS
@@ -19,8 +19,6 @@ echo "pkg install done ..."
 #git config --global user.email <email>
 
 # 3rd party repos
-cd ~
-git clone git@github.com:ceccott/dotfiles.git
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 git clone https://github.com/jocelynmallon/zshmarks.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zshmarks

@@ -14,6 +14,7 @@ filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
 
 let g:mapleader = '\'       " leader map
+let g:camelcasemotion_key = '\'
 
 xnoremap p pgvy             " multiple paste same buffer
 
@@ -23,41 +24,46 @@ nnoremap <leader>s :set invspell<CR>
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
 
-" Add-ons
 "Plug 'foo/bar', {'on':[]} " plugin disable example
+
+" Shortcuts and Movements
+Plug 'ervandew/supertab'        " supertab
+Plug 'tpope/vim-surround'             " quick surround extension
+Plug 'jiangmiao/auto-pairs'           " automatic brackets pairing
+Plug 'bkad/CamelCaseMotion'
+
+" Syntax
+"Plug 'nachumk/systemverilog.vim'      " verilog syntax
+Plug 'vhda/verilog_systemverilog.vim' " system verilog syntax
+Plug 'leafgarland/typescript-vim'     " typescript syntax support
+
+" Code linting/checking/completing/commenting
+Plug 'honza/vim-snippets'             " snippets db by language
+Plug 'SirVer/ultisnips'               " snippets engine
+Plug 'neomake/neomake'                " code checker
+Plug 'tmhedberg/SimpylFold',{'on':[]} " code folding
+Plug 'scrooloose/nerdcommenter'       " syntax-aware commenting and shortcuts
+Plug 'OmniSharp/omnisharp-vim' "C# autocompletion
+Plug 'zchee/deoplete-jedi'  " jedi connection to deoplete
 Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " autocomplete asynch framework
 Plug 'ycm-core/YouCompleteMe'
-Plug 'zchee/deoplete-jedi'  " jedi connection to deoplete
-Plug 'OmniSharp/omnisharp-vim' "C# autocompletion
 
-Plug 'ervandew/supertab'        " supertab
-
-"Plug 'dense-analysis/ale'
-Plug 'vim-airline/vim-airline' " status-bar customization
-Plug 'vim-airline/vim-airline-themes' " vim-airline additional themes
-Plug 'jiangmiao/auto-pairs'           " automatic brackets pairing
-Plug 'tpope/vim-surround'             " quick surround extension
-Plug 'scrooloose/nerdcommenter'       " syntax-aware commenting and shortcuts
-Plug 'leafgarland/typescript-vim'     " typescript syntax support
-
+" Misc
 Plug 'scrooloose/nerdtree'            " file manager and explorer
 Plug 'majutsushi/tagbar'              " function browser
-Plug 'ryanoasis/vim-devicons'         " file icons for the manager
-Plug 'neomake/neomake'                " code checker
-Plug 'tmhedberg/SimpylFold',{'on':[]} " code folding
 Plug 'tpope/vim-fugitive'             " embedded git support
 Plug 'vim-scripts/DoxygenToolkit.vim' " doxygen helper
 Plug 'ludovicchabant/vim-gutentags'   " tags manager
-Plug 'honza/vim-snippets'             " snippets db by language
-Plug 'SirVer/ultisnips'               " snippets engine
 
 " Styling
 Plug 'morhetz/gruvbox'
 Plug 'chrisbra/colorizer'
 Plug 'christoomey/vim-tmux-navigator' " tmux navigation compatibility
 Plug 'MattesGroeger/vim-bookmarks'    " enable lines bookmarking
-Plug 'nachumk/systemverilog.vim'      " verilog syntax
+Plug 'ryanoasis/vim-devicons'         " file icons for the manager
+Plug 'vim-airline/vim-airline'        " status-bar customization
+Plug 'vim-airline/vim-airline-themes' " vim-airline additional themes
 
 call plug#end()
 
@@ -148,6 +154,16 @@ tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
+
+" CamelCaseMotion
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
 
 " embedded terminal support
 nnoremap <leader>T :sp term://zsh<CR>
