@@ -13,18 +13,13 @@ plugins=(git zshmarks vi-mode colorize)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
 # ZSHMARKS config
 alias jj="jump"
 alias bb="bookmark"
 alias bbd="deletemark"
 alias bbs="showmarks"
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/omw6xo/.vimpkg/bin
-
 source ~/.zprofile
-#source ~/.tmuxinator/tmuxinator.zsh
 
 #disable ctrl s and ctrl q
 stty -ixon
