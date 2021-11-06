@@ -2,10 +2,10 @@ set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
 set ignorecase              " case insensitive matching
 set hlsearch                " highlight search results
-set tabstop=4               " number of columns occupied by a tab character
-set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
+set tabstop=2               " number of columns occupied by a tab character
+set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
-set shiftwidth=4            " width for autoindents
+set shiftwidth=2            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
@@ -47,7 +47,7 @@ Plug 'OmniSharp/omnisharp-vim' "C# autocompletion
 Plug 'zchee/deoplete-jedi'  " jedi connection to deoplete
 Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " autocomplete asynch framework
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 
 " Misc
 Plug 'scrooloose/nerdtree'            " file manager and explorer
@@ -84,8 +84,8 @@ let g:OmniSharp_server_stdio = 1
 
 " `custom_snippets` is located in ~/.config/nivm
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
@@ -111,9 +111,8 @@ let g:jedi#completions_enabled = 0
 " open the go-to function in split, not another buffer
 let g:jedi#use_splits_not_buffers = "right"
 
-" code checking
+" code checking/linting
 call neomake#configure#automake('w')               " calls neomake automatically on buffer write
-
 let g:neomake_cpplint_maker = {'args':['--filter=-whitespace/comments,-whitespace/comma,-runtime/explicit'] } " -whitespace/comma
 "let g:neomake_pylint_maker = {'args':['--extension-pkg-whitelist=zmq']}
 let g:neomake_python_enabled_makers = ['pylint']
@@ -128,7 +127,7 @@ let g:bookmark_highlight_lines = 1
 
 
 " ==== NERDTREE
-let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store', '\.meta']
+let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store', '\.meta', 'tags']
 
 let NERDTreeShowHidden=1
 let g:NERDTreeWinPos="left"
