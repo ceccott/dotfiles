@@ -60,7 +60,8 @@ Plug 'tpope/vim-fugitive'             " embedded git support
 Plug 'ludovicchabant/vim-gutentags'   " tags manager
 
 " Styling
-Plug 'lifepillar/gruvbox8'
+Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'chrisbra/colorizer'
 Plug 'christoomey/vim-tmux-navigator' " tmux navigation compatibility
 Plug 'ryanoasis/vim-devicons'         " file icons for the manager
@@ -119,7 +120,7 @@ require('lspkind').init({
 EOF
 
 "- - - - - - - - - - - - - - - - Styling - - - - - - - - - - - - - - - - - -
-colorscheme gruvbox8
+colorscheme gruvbox
 let g:airline_theme='luna'                          " status-bar vim-airline theme
 set background =dark
 set ruler
@@ -141,7 +142,7 @@ inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
-nnoremap dn <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
+nnoremap dn <cmd>lua vim.diagnostic.goto_next { wrap = false }<CR>
 
 " surround shortcuts mapping
 nmap <M-s> ysiw
