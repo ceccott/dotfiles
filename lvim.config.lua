@@ -73,14 +73,31 @@ lvim.keys.visual_mode["``"] = "<Plug>(comment_toggle_linewise_visual)"  -- comme
 -- }
 
 -- TODO: User Config for predefined plugins
+--
+-- nvim-tree mappings
+local function my_on_attach(bufnr)
+  local api = require "nvim-tree.api"
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- custom mappings
+  vim.keymap.set('n', 's',     api.node.open.vertical,              opts('Open: Vertical Split'))
+  vim.keymap.set('n', 'i',     api.node.open.horizontal,              opts('Open: Horizontal Split'))
+end
+
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.open_mapping = "<c-t>"
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
---lvim.builtin.nvimtree.setup.view.mappings.list = {{key = "i", action = "split"}, {key = "s", action = "vsplit"}, {key = "t", action = "tabnew"},}
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+lvim.builtin.nvimtree.setup.on_attach = my_on_attach
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -183,13 +200,32 @@ lvim.plugins = {
       cmd = "TroubleToggle",
     },
     {
-      "morhetz/gruvbox"
+      "bkad/CamelCaseMotion"
     },
     {
-      "bkad/CamelCaseMotion"
+      "aserowy/tmux.nvim"
+    },
+    { 
+      "tpope/vim-surround" 
     }
 }
 -- Plugins Config -- 
+require("tmux").setup {
+  navigation = {
+    -- cycles to opposite pane while navigating into the border
+    cycle_navigation = true,
+
+    -- enables default keybindings (C-hjkl) for normal mode
+    enable_default_keybindings = true,
+
+    -- prevents unzoom tmux when navigating beyond vim border
+    persist_zoom = true,
+  },
+  resize = {
+    -- enables default keybindings (A-hjkl) for normal mode
+    enable_default_keybindings = true,
+  },
+}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

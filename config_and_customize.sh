@@ -14,7 +14,7 @@ sudo pip install $PIP_PKGS
 echo "-> NERD FONT INSTALL"
 mkdir $HOME/.fonts
 wget $NERD_FONT_URL  -O font.zip
-unzip font.zip -d ~/.fonts/ 
+unzip font.zip -d ~/.fonts/
 fc-cache -fv
 
 echo "-> GNOME-TERMINAL THEME INSTALL"
@@ -24,6 +24,7 @@ echo "->TMUX CONFIG"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "->VIM CONFIG"
+mkdir -p .vim/tmp
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
