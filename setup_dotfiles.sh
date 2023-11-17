@@ -6,9 +6,9 @@ wdir=${PWD}
 
 touch ~/.zprofile
 
-cp ${wdir}/vimrc 		${HOME}/.vimrc
-cp ${wdir}/lvim.config.lua 	${HOME}/.config/lvim/config.lua
-cp ${wdir}/tmux.conf 		${HOME}/.tmux.conf
-cp ${wdir}/zshrc 		${HOME}/.zshrc
+ln -sf ${wdir}/vimrc 		${HOME}/.vimrc
+ln -sf ${wdir}/lvim.config.lua 	${HOME}/.config/lvim/config.lua
+ln -sf ${wdir}/tmux.conf 		${HOME}/.tmux.conf
+ln -sf ${wdir}/zshrc 		${HOME}/.zshrc
 
 echo "dotfiles copied"
