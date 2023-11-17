@@ -205,10 +205,17 @@ lvim.plugins = {
     {
       "aserowy/tmux.nvim"
     },
-    { 
-      "tpope/vim-surround" 
+    {
+      "tpope/vim-surround"
+    },
+    {
+      "David-Kunz/gen.nvim"
+    },
+    {
+      "tpope/vim-fugitive"
     }
 }
+
 -- Plugins Config -- 
 require("tmux").setup {
   navigation = {
@@ -225,6 +232,12 @@ require("tmux").setup {
     -- enables default keybindings (A-hjkl) for normal mode
     enable_default_keybindings = true,
   },
+}
+
+require("gen").prompts['Test fix'] = {
+  prompt = "Fix the following code. Only ouput the result in format ```$filetype\n...\n```:\n```$filetype\n$text\n```",
+  replace = true,
+  extract = "```$filetype\n(.-)```"
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
