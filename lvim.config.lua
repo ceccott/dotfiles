@@ -12,7 +12,7 @@ lvim.use_icons = true
 
 -- VIM OPTIONS
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
-vim.opt.showmode = true -- show mode like -- INSERT -- 
+vim.opt.showmode = true -- show mode like -- INSERT --
 vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
@@ -213,10 +213,17 @@ lvim.plugins = {
     },
     {
       "tpope/vim-fugitive"
+    },
+    {
+    "mfussenegger/nvim-dap-python"
+    },
+    {
+    "mattesgroeger/vim-bookmarks"
     }
 }
 
--- Plugins Config -- 
+-- Plugins Config --
+
 require("tmux").setup {
   navigation = {
     -- cycles to opposite pane while navigating into the border
