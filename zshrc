@@ -1,5 +1,8 @@
 # Path to oh-my-zsh installation.
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:~/.local/bin/
+
+source ~/.zprofile
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:~/.local/bin/:~/.cargo/bin
 
 export ZSH=${HOME}/.oh-my-zsh
 
@@ -85,8 +88,6 @@ alias bbs="showmarks"
 
 alias pullall="ls | xargs  -I{} git -C {} pull"
 alias mux='tmuxinator'
-
-source ~/.zprofile
 
 export EDITOR='vim'
 

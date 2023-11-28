@@ -23,7 +23,7 @@ vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.relativenumber = true -- set relative number line idx
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "\\"
+lvim.leader = "space"
 -- add your own keymapping
 -- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-Space>"] = ":NvimTreeToggle<cr>"
@@ -178,10 +178,10 @@ formatters.setup {
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "flake8", filetypes = { "python" } },
+  { command = "flake8", args = {"--ignore=E501"}, filetypes = { "python" } },
   {
     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    command = "shellcheck",
+    command = "shellcheck", filetypes = { "shell"},
     ---@usage arguments to pass to the formatter
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
     extra_args = { "--severity", "warning" },
