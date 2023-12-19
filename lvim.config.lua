@@ -158,12 +158,29 @@ lvim.builtin.treesitter.highlight.enable = true
 --   --Enable completion triggered by <c-x><c-o>
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
+--
+
+-- skipped server list
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {"svls"})
+
+-- custom default servers
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "verible"
+end, lvim.lsp.automatic_configuration.skipped_servers)
+
+require("lvim.lsp.manager").setup("verible",
+{
+  cmd = {"verible-verilog-ls", "--rules_config_search"} -- enable automatic search of .rules.verible_lint
+})
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "black", filetypes = { "python" } },
   -- { command = "isort", filetypes = { "python" } },
+  -- { command = "verible-verilog-format", filetypes = {"verilog", "systemverilog"},
+  --   extra_args = { "--stdin_name", "$FILENAME", "-" }
+  -- },
   {
     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "prettier",
