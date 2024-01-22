@@ -113,6 +113,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
+  "verilog",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -120,11 +121,6 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
 
--- -- make sure server will always be installed even if the server is in skipped_servers list
--- lvim.lsp.installer.setup.ensure_installed = {
---     "sumneko_lua",
---     "jsonls",
--- }
 -- -- change UI setting of `LspInstallInfo`
 -- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
 -- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
@@ -161,17 +157,36 @@ lvim.builtin.treesitter.highlight.enable = true
 --
 
 -- skipped server list
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {"svls"})
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {"svls", "csharp_ls"})
 
 -- custom default servers
-lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
-  return server ~= "verible"
-end, lvim.lsp.automatic_configuration.skipped_servers)
+-- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+--   return server ~= "verible"
+-- end, lvim.lsp.automatic_configuration.skipped_servers)
+lvim.lsp.installer.setup.automatic_installation = false
 
 require("lvim.lsp.manager").setup("verible",
 {
   cmd = {"verible-verilog-ls", "--rules_config_search"} -- enable automatic search of .rules.verible_lint
 })
+
+-- -- make sure server will always be installed even if the server is in skipped_servers list
+lvim.lsp.installer.setup.ensure_installed = {
+     "omnisharp_mono",
+ }
+
+require'lspconfig'.omnisharp.setup {
+    cmd = { "mono", "/home/leonardo/.local/share/lvim/mason/packages/omnisharp-mono/omnisharp/OmniSharp.exe" },
+
+    -- Enables support for reading code style, naming convention and analyzer
+    enable_editorconfig_support = true,
+    enable_ms_build_load_projects_on_demand = false,
+    enable_roslyn_analyzers = false,
+    organize_imports_on_format = false,
+    enable_import_completion = false,
+    sdk_include_prereleases = true,
+    analyze_open_documents_only = false,
+}
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -237,7 +252,7 @@ lvim.plugins = {
     },
     {
     "mattesgroeger/vim-bookmarks"
-    }
+    },
 }
 
 -- Plugins Config --
@@ -263,6 +278,16 @@ require("gen").prompts['Test fix'] = {
   prompt = "Fix the following code. Only ouput the result in format ```$filetype\n...\n```:\n```$filetype\n$text\n```",
   replace = true,
   extract = "```$filetype\n(.-)```"
+}
+
+lvim.autocommands = {
+    {
+        "BufEnter", -- see `:h autocmd-events`
+        { -- this table is passed verbatim as `opts` to `nvim_create_autocmd`
+            pattern = { "*.v", "*.sv" }, -- see `:h autocmd-events`
+            command = "setlocal commentstring=//%s",
+        }
+    },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)

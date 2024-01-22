@@ -1,7 +1,5 @@
 # Path to oh-my-zsh installation.
 
-source ~/.zprofile
-
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:~/.local/bin/:~/.cargo/bin
 
 export ZSH=${HOME}/.oh-my-zsh
@@ -26,7 +24,7 @@ SPACESHIP_GIT_STATUS_UNTRACKED=""
 SPACESHIP_GIT_STATUS_COLOR="yellow"
 SPACESHIP_GIT_SYMBOL="\UF418 "
 SPACESHIP_GIT_BRANCH_COLOR="blue"
-SPACESHIP_GIT_STATUS_SUFFIX="]"
+SPACESHIP_GIT_STATUS_SUFFIX="] "
 SPACESHIP_GIT_STATUS_PREFIX=" ["
 SPACESHIP_GIT_SUFFIX=""
 
@@ -35,7 +33,7 @@ SPACESHIP_EXEC_TIME_PREFIX="."
 SPACESHIP_EXEC_TIME_SUFFIX=""
 SPACESHIP_EXEC_TIME_ELAPSED="5"
 
-SPACESHIP_DOTNET_SHOW=false
+SPACESHIP_DOTNET_SHOW=true
 
 SPACESHIP_PROMPT_ORDER=(
   #time          # Time stamps section
@@ -102,3 +100,6 @@ bindkey -v
 
 # autosuggest
 #bindkey '^[[A' autosuggest-accept
+
+source ~/.zprofile
+
