@@ -158,6 +158,7 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- skipped server list
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {"svls", "csharp_ls"})
+lvim.lsp.installer.setup.automatic_installation = false
 
 -- custom default servers
 -- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
