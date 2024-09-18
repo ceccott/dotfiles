@@ -26,7 +26,7 @@ SPACESHIP_GIT_SYMBOL="\UF418 "
 SPACESHIP_GIT_BRANCH_COLOR="blue"
 SPACESHIP_GIT_STATUS_SUFFIX="] "
 SPACESHIP_GIT_STATUS_PREFIX=" ["
-SPACESHIP_GIT_SUFFIX=""
+SPACESHIP_GIT_SUFFIX=" "
 
 SPACESHIP_EXEC_TIME_SHOW=true
 SPACESHIP_EXEC_TIME_PREFIX="."
@@ -57,7 +57,7 @@ SPACESHIP_PROMPT_ORDER=(
   aws           # Amazon Web Services section
   venv          # virtualenv section
   conda         # conda virtualenv section
-  #pyenv         # Pyenv section
+  # pyenv         # Pyenv section
   dotnet        # .NET section
   #ember         # Ember.js section
   kubectl       # Kubectl context section
