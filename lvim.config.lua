@@ -26,6 +26,7 @@ vim.opt.relativenumber = true -- set relative number line idx
 lvim.leader = "space"
 -- add your own keymapping
 -- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<C-o>"] = ":SymbolsOutline<cr>"
 lvim.keys.normal_mode["<C-Space>"] = ":NvimTreeToggle<cr>"
 lvim.keys.normal_mode["<C-n>"] = ":tabn<cr>"
 lvim.keys.normal_mode["<C-p>"] = ":tabp<cr>"
@@ -37,6 +38,10 @@ lvim.keys.visual_mode["``"] = "<Plug>(comment_toggle_linewise_visual)"  -- comme
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+
+-- lvim.builtin.telescope.on_config_done = function(telescope)
+--   telescope.load_extension('symbols')
+-- end
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -234,8 +239,25 @@ lvim.plugins = {
       cmd = "TroubleToggle",
     },
     {
-      "bkad/CamelCaseMotion"
-    },
+      "chrisgrieser/nvim-spider",
+      keys = {
+        {
+          "w",
+          "<cmd>lua require('spider').motion('w')<CR>",
+          mode = { "n", "o", "x" },
+        },
+        {
+          "b",
+          "<cmd>lua require('spider').motion('b')<CR>",
+          mode = { "n", "o", "x" },
+        },
+        {
+          "e",
+          "<cmd>lua require('spider').motion('e')<CR>",
+          mode = { "n", "o", "x" },
+        },
+		-- ...
+	},    },
     {
       "aserowy/tmux.nvim"
     },
@@ -254,9 +276,54 @@ lvim.plugins = {
     {
     "mattesgroeger/vim-bookmarks"
     },
+    {
+    "simrat39/symbols-outline.nvim"
+    },
 }
 
 -- Plugins Config --
+
+require("symbols-outline").setup{
+opts = {
+  highlight_hovered_item = true,
+  show_guides = true,
+  auto_preview = true,
+  position = 'right',
+  relative_width = true,
+  width = 15,
+  auto_close = false,
+  show_numbers = false,
+  show_relative_numbers = false,
+  show_symbol_details = false,
+  preview_bg_highlight = 'Pmenu',
+  autofold_depth = 0,
+  auto_unfold_hover = true,
+  fold_markers = { '', '' },
+  wrap = false,
+  keymaps = { -- These keymaps can be a string or a table for multiple keys
+    close = {"<Esc>", "q"},
+    goto_location = "<Cr>",
+    focus_location = "o",
+    hover_symbol = "s",
+    toggle_preview = "K",
+    rename_symbol = "r",
+    code_actions = "a",
+    fold = "h",
+    unfold = "l",
+    fold_all = "W",
+    unfold_all = "E",
+    fold_reset = "R",
+  },
+  lsp_blacklist = {},
+  symbol_blacklist = {},
+},
+}
+
+require("spider").setup {
+	skipInsignificantPunctuation = true,
+	subwordMovement = true,
+	customPatterns = {}, -- check "Custom Movement Patterns" in the README for details
+}
 
 require("tmux").setup {
   copy_sync = {
