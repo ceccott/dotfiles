@@ -1,5 +1,7 @@
 #! /usr/bin/bash
 
+set -e
+
 INSTALL_ROOT=$(pwd)
 WGET_DST_FOLDER='.'
 APT_REQ_PKGS='git make python3-pip npm nodejs cargo curl vim zsh cmake tmux clangd build-essential gettext'
@@ -7,7 +9,7 @@ PIP_REQ_PKGS='numpy'
 
 echo "-> APT PACKAGES INSTALL"
 
-sudo apt install -y $APT_REQ_PKGS
+#sudo yum install -y $APT_REQ_PKGS
 
 echo "-> PYTHON PACKAGES INSTALL"
 sudo pip3 install $PIP_REQ_PKGS
@@ -26,6 +28,8 @@ if [[ $(nvim --version | head -n 1) != 'NVIM v0.9.4' ]]; then
   make -s CMAKE_BUILD_TYPE=Release
   sudo make install
   cd $INSTALL_ROOT
+else
+  echo "nvim 0.9.4 already installed"
 fi
 # LUNARVIM
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) --yes

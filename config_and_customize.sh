@@ -1,15 +1,16 @@
 #! /bin/bash
 
+
 APT_PKGS='dconf-cli uuid-runtime'
 PIP_PKGS='spotify-cli-linux'
 NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraMono.zip"
 GNOME_TERMINAL_THEME_NUM=224
 
 echo "-> APT INSTALL"
-sudo apt install -y $APT_PKGS
+#sudo yum install -y $APT_PKGS
 
 echo "-> PIP INSTALL"
-sudo pip install $PIP_PKGS
+sudo pip3 install $PIP_PKGS
 
 echo "-> NERD FONT INSTALL"
 mkdir $HOME/.fonts
