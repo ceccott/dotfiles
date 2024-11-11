@@ -177,22 +177,22 @@ require("lvim.lsp.manager").setup("verible",
 })
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
-lvim.lsp.installer.setup.ensure_installed = {
-     "omnisharp_mono",
- }
+-- lvim.lsp.installer.setup.ensure_installed = {
+--      "omnisharp_mono",
+--  }
 
-require'lspconfig'.omnisharp.setup {
-    cmd = { "mono", "/home/leonardo/.local/share/lvim/mason/packages/omnisharp-mono/omnisharp/OmniSharp.exe" },
+-- require'lspconfig'.omnisharp.setup {
+--     cmd = { "mono", "/home/leonardo/.local/share/lvim/mason/packages/omnisharp-mono/omnisharp/OmniSharp.exe" },
 
-    -- Enables support for reading code style, naming convention and analyzer
-    enable_editorconfig_support = true,
-    enable_ms_build_load_projects_on_demand = false,
-    enable_roslyn_analyzers = false,
-    organize_imports_on_format = false,
-    enable_import_completion = false,
-    sdk_include_prereleases = true,
-    analyze_open_documents_only = false,
-}
+--     -- Enables support for reading code style, naming convention and analyzer
+--     enable_editorconfig_support = true,
+--     enable_ms_build_load_projects_on_demand = false,
+--     enable_roslyn_analyzers = false,
+--     organize_imports_on_format = false,
+--     enable_import_completion = false,
+--     sdk_include_prereleases = true,
+--     analyze_open_documents_only = false,
+-- }
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -329,6 +329,9 @@ require("spider").setup {
 }
 
 require("tmux").setup {
+  copy_sync = {
+      enable = false
+  },
   navigation = {
     -- cycles to opposite pane while navigating into the border
     cycle_navigation = true,
