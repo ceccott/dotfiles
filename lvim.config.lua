@@ -279,6 +279,9 @@ lvim.plugins = {
     {
     "simrat39/symbols-outline.nvim"
     },
+    {
+    "vim-scripts/systemrdl.vim"
+    },
 }
 
 -- Plugins Config --
@@ -354,6 +357,13 @@ lvim.autocommands = {
         { -- this table is passed verbatim as `opts` to `nvim_create_autocmd`
             pattern = { "*.v", "*.sv" }, -- see `:h autocmd-events`
             command = "setlocal commentstring=//%s",
+        }
+    },
+    {
+        "BufEnter", -- see `:h autocmd-events`
+        { -- this table is passed verbatim as `opts` to `nvim_create_autocmd`
+            pattern = { "*.rdl"}, -- see `:h autocmd-events`
+            command = "setfiletype systemrdl | setlocal commentstring=//%s",
         }
     },
 }
