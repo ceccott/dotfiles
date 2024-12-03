@@ -95,6 +95,19 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'i',     api.node.open.horizontal,              opts('Open: Horizontal Split'))
 end
 
+local function get_git_root()
+  local git_root = vim.fn.system('git rev-parse --show-toplevel')
+  if vim.v.shell_error == 0 then
+    return vim.fn.fnamemodify(git_root, ':p'):gsub("\n", "") -- Remove trailing newline
+  else
+    return "~"
+  end
+end
+
+vim.g.codecompanion_adapter="gemini"
+vim.cmd([[cab cc CodeCompanion]])
+vim.cmd([[cab ccc CodeCompanionChat]])
+
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
@@ -199,9 +212,9 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "black", filetypes = { "python" } },
   -- { command = "isort", filetypes = { "python" } },
-  -- { command = "verible-verilog-format", filetypes = {"verilog", "systemverilog"},
-  --   extra_args = { "--stdin_name", "$FILENAME", "-" }
-  -- },
+  { command = "verible-verilog-format", filetypes = {"verilog", "systemverilog"},
+    extra_args = {"--inplace", "--flagfile", get_git_root() .. "/.rules.verible_format","--stdin_name", "$FILENAME", "-" }
+  },
   {
     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "prettier",
@@ -282,9 +295,38 @@ lvim.plugins = {
     {
     "vim-scripts/systemrdl.vim"
     },
+    {
+      "olimorris/codecompanion.nvim",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        -- The following are optional:
+        { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
+      },
+      config = true
+    }
 }
 
 -- Plugins Config --
+require("codecompanion").setup({
+  adapters = {
+    gemini = function()
+      return require("codecompanion.adapters").extend("gemini", {
+        env = {
+          api_key = "GEMINI_API_KEY"
+        },
+      })
+    end,
+  },
+  strategies = {
+    chat = {
+      adapter = "gemini",
+    },
+    inline = {
+      adapter = "gemini",
+    },
+  },
+})
 
 require("symbols-outline").setup{
 opts = {
