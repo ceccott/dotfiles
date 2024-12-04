@@ -1,9 +1,6 @@
--- Read the docs: https://www.lunarvim.org/docs/configuration
--- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
--- Forum: https://www.reddit.com/r/lunarvim/
--- Discord: https://discord.com/invite/Xb9B4Ny
+-- LVIM CONFIGURATION
 --
--- general
+
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 --lvim.colorscheme = "gruvbox"
@@ -103,6 +100,20 @@ local function get_git_root()
     return "~"
   end
 end
+
+local function load_env(file)
+    local vars = {}
+    for line in io.lines(file) do
+        local key, value = line:match("([^=]+)=(.+)")
+        if key and value then
+            vars[key] = value
+        end
+    end
+    return vars
+end
+
+local dotenv_path = vim.env.HOME .. "/.env"
+local dotenv = load_env(dotenv_path)
 
 vim.g.codecompanion_adapter="gemini"
 vim.cmd([[cab cc CodeCompanion]])
@@ -303,30 +314,23 @@ lvim.plugins = {
         -- The following are optional:
         { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
       },
-      config = true
+      config  = function()
+      require("codecompanion").setup({
+        adapters = {
+            gemini = function()
+              return require("codecompanion.adapters").extend("gemini", {
+                env = {
+                  api_key = dotenv.GEMINI_API_KEY
+                },
+              })
+            end,
+          },
+      })
+      end,
     }
 }
 
 -- Plugins Config --
-require("codecompanion").setup({
-  adapters = {
-    gemini = function()
-      return require("codecompanion.adapters").extend("gemini", {
-        env = {
-          api_key = "GEMINI_API_KEY"
-        },
-      })
-    end,
-  },
-  strategies = {
-    chat = {
-      adapter = "gemini",
-    },
-    inline = {
-      adapter = "gemini",
-    },
-  },
-})
 
 require("symbols-outline").setup{
 opts = {
