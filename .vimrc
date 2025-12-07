@@ -72,15 +72,6 @@ set hlsearch
 set incsearch
 set ignorecase
 
-" ==== NERDTREE
-"let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store']
-"
-"let NERDTreeShowHidden=1
-"let g:NERDTreeWinPos="left"
-"let g:NERDTreeDirArrows=0
-"map <C-@> :NERDTreeToggle<CR>
-"autocmd vimenter * NERDTree
-
 " ==== moving around
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>

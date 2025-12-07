@@ -4,21 +4,17 @@ set -e
 
 INSTALL_ROOT=$(pwd)
 WGET_DST_FOLDER='.'
-APT_REQ_PKGS='git make python3-pip npm nodejs cargo curl vim zsh cmake tmux clangd build-essential gettext'
-PIP_REQ_PKGS='numpy'
+APT_REQ_PKGS='git make kitty python3-pip npm nodejs cargo curl vim neovim zsh cmake tmux'
 
 echo "-> APT PACKAGES INSTALL"
 
-#sudo yum install -y $APT_REQ_PKGS
-
-echo "-> PYTHON PACKAGES INSTALL"
-sudo pip3 install $PIP_REQ_PKGS
+sudo pacman -Sy $APT_REQ_PKGS
 
 echo "-> OH-MY-ZSH INSTALL"
 rm -rf $HOME/.oh-my-zsh/
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 chsh -s $(which zsh)
-echo 'export PATH=/home/leonardo/.local/bin:$PATH' >> $HOME/.zshrc
+echo 'export PATH=~/.local/bin:$PATH' >> $HOME/.zprofile
 
 echo "-> NVIM AND LUNAR VIM INSTALL"
 if [[ $(nvim --version | head -n 1) != 'NVIM v0.9.4' ]]; then
