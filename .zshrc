@@ -102,4 +102,3 @@ bindkey -v
 #bindkey '^[[A' autosuggest-accept
 
 source ~/.zprofile
-

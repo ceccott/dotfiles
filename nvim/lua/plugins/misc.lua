@@ -11,6 +11,16 @@
 
 return {
 	{ "folke/trouble.nvim", cmd = "TroubleToggle" },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+    },
+    lazy = false, -- neo-tree will lazily load itself
+  },
 	{ "chrisgrieser/nvim-spider", opts = { skipInsignificantPunctuation = true, subwordMovement = true } },
   {
     "christoomey/vim-tmux-navigator",
@@ -47,34 +57,34 @@ return {
 		end,
 	},
 	{ "vim-scripts/systemrdl.vim" },
-  {
-    "gutsavgupta/nvim-gemini-companion",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    event = "VeryLazy",
-    config = function()
-      -- You can configure the plugin by passing a table to the setup function.
-      -- Example:
-      -- require("gemini").setup({
-      --   cmds = {"gemini"},
-      --   win = {
-      --     preset = "floating",
-      --     width = 0.8,
-      --     height = 0.8,
-      --   }
-      -- })
-      require("gemini").setup()
-    end,
-    keys = {
-      { "<leader>@@", "<cmd>GeminiToggle<cr>", desc = "Toggle Gemini CLI"},
-      { "<leader>@c", "<cmd>GeminiClose<cr>", desc = "Close Gemini CLI process"},
-      { "<leader>@D", "<cmd>GeminiSendFileDiagnostic<cr>", desc = "Send File Diagnostics"},
-      { "<leader>@d", "<cmd>GeminiSendLineDiagnostic<cr>", desc = "Send Line Diagnostics"},
-      { "<leader>@s", "<cmd>GeminiSwitchSidebarStyle<cr>", desc = "Switch Sidebar Style"},
-      { "<leader>@p", "<cmd>GeminiSend<cr>", mode = "v", desc = "Send Selected Text to AI Agent"},
-    }
-  },
+  -- {
+  --   "gutsavgupta/nvim-gemini-companion",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   event = "VeryLazy",
+  --   config = function()
+  --     -- You can configure the plugin by passing a table to the setup function.
+  --     -- Example:
+  --     -- require("gemini").setup({
+  --     --   cmds = {"gemini"},
+  --     --   win = {
+  --     --     preset = "floating",
+  --     --     width = 0.8,
+  --     --     height = 0.8,
+  --     --   }
+  --     -- })
+  --     require("gemini").setup()
+  --   end,
+  --   keys = {
+  --     { "<leader>@@", "<cmd>GeminiToggle<cr>", desc = "Toggle Gemini CLI"},
+  --     { "<leader>@c", "<cmd>GeminiClose<cr>", desc = "Close Gemini CLI process"},
+  --     { "<leader>@D", "<cmd>GeminiSendFileDiagnostic<cr>", desc = "Send File Diagnostics"},
+  --     { "<leader>@d", "<cmd>GeminiSendLineDiagnostic<cr>", desc = "Send Line Diagnostics"},
+  --     { "<leader>@s", "<cmd>GeminiSwitchSidebarStyle<cr>", desc = "Switch Sidebar Style"},
+  --     { "<leader>@p", "<cmd>GeminiSend<cr>", mode = "v", desc = "Send Selected Text to AI Agent"},
+  --   }
+  -- },
   {
       "nvim-lualine/lualine.nvim",
       opts = {

@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-set -e
+#set -e
 
 INSTALL_ROOT=$(pwd)
 WGET_DST_FOLDER='.'
@@ -11,25 +11,8 @@ echo "-> APT PACKAGES INSTALL"
 sudo pacman -Sy $APT_REQ_PKGS
 
 echo "-> OH-MY-ZSH INSTALL"
-rm -rf $HOME/.oh-my-zsh/
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+ZSH=$HOME/.config/oh-my-zsh/
+rm -rf $HOME/.config/oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" ""
 chsh -s $(which zsh)
 echo 'export PATH=~/.local/bin:$PATH' >> $HOME/.zprofile
-
-echo "-> NVIM AND LUNAR VIM INSTALL"
-if [[ $(nvim --version | head -n 1) != 'NVIM v0.9.4' ]]; then
-  wget https://github.com/neovim/neovim/archive/refs/tags/stable.tar.gz -O $WGET_DST_FOLDER/nvim-stable.tar.gz
-  tar -xf nvim-stable.tar.gz
-  cd neovim-stable
-  make -s CMAKE_BUILD_TYPE=Release
-  sudo make install
-  cd $INSTALL_ROOT
-else
-  echo "nvim 0.9.4 already installed"
-fi
-# LUNARVIM
-LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) --yes
-
-# CLEANUP
-echo "-> CLEANUP"
-sudo rm -rf neovim-stable nvim-stable.tar.gz
