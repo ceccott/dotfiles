@@ -2,7 +2,7 @@
 
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:~/.local/bin/:~/.cargo/bin
 
-export ZSH=${HOME}/.oh-my-zsh
+export ZSH=${HOME}/.config/oh-my-zsh
 
 # THEME CUSTOMIZATION
 ZSH_THEME="spaceship"
