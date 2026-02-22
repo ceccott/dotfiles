@@ -1,0 +1,21 @@
+#!/bin/sh
+
+IMAGE=~/.config/theme/current/background
+
+grim "$IMAGE"
+
+swaylock \
+	--image "$IMAGE" \
+	--effect-blur 12x10 \
+	--indicator \
+	--clock \
+	--timestr "%H:%M" \
+	--datestr "%a %d %b" \
+	--ring-color 89b4fa \
+	--ring-wrong-color 89bfff \
+	--ring-ver-color 22bfff \
+	--inside-color 1e1e2e88 \
+	--key-hl-color f9e2af \
+	--line-color 00000000 \
+	--separator-color 00000000 \
+	--text-color cdd6f4

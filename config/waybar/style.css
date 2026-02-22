@@ -1,0 +1,252 @@
+/* @import "../omarchy/current/theme/waybar.css"; */
+
+@define-color base #1e1e2e;
+@define-color surface #313244;
+@define-color text #cdd6f4;
+@define-color accent #89b4fa;
+
+* {
+  font-family: 'FiraMono Nerd Font';
+  font-size: 18px;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========== WAYBAR CONTAINER ========== */
+window#waybar {
+  background: transparent; /* transparent base */
+  border-radius: 16px;
+  margin: 6px 10px;
+  padding: 4px 8px;
+  color: #cdd6f4; /* Catppuccin text */
+}
+
+/* ========== MODULE SPACING ========== */
+.modules-left{
+  /* background: rgba(49, 50, 68, 0.6); */
+  background: transparent;
+  border-radius: 12px;
+  margin: 6px 8px;
+  padding: 0px 4px;
+}
+.modules-center{
+  background: rgba(49, 50, 68, 0.6);
+  border-radius: 12px;
+  margin: 8px 4px;
+  padding: 0px 8px;
+}
+.modules-right {
+  background: transparent;
+  border-radius: 12px;
+  margin: 6px 8px;
+  padding: 0px 4px;
+}
+
+/* ========== BUBBLE-LIKE MODULE STYLE ========== */
+#monitor,
+#system,
+#audio,
+#mpris,
+#custom-agenda,
+#custom-update,
+#custom-logo,
+#custom-screenrecording-indicator,
+#tray{
+  background: rgba(30, 38, 51, 0.8);
+  border-radius: 14px;
+  margin: 4px 4px;
+  padding: 6px 24px;
+  color: #cdd6f4;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effect */
+#workspaces button:hover,
+#mpris:hover,
+#custom-update:hover,
+#custom-logo:hover,
+#custom-screenrecording-indicator:hover{
+  background: rgba(108, 112, 134, 0.8);
+  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); */
+  color: #ffffff;
+}
+
+/* ========== WORKSPACES ========== */
+
+#workspaces {
+  background: transparent;
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); */
+  border-radius: 12px;
+}
+
+#workspaces button {
+  background: rgba(49, 50, 68, 0.6);
+  border-radius: 20px;
+  margin: 9px 2px;
+  padding: 0px 8px;
+  color: transparent;
+  box-shadow: none;
+}
+
+#workspaces button.focused {
+  background: rgba(166, 227, 161, 0.8);
+  margin: 6px 8px;
+  color: #1e1e2e;
+  font-weight: bold;
+  box-shadow: none;
+}
+
+#workspaces button.urgent {
+  background: rgba(243, 139, 168, 0.8);
+  color: #1e1e2e;
+}
+
+
+/* ========== MUSIC PLAYER ======== */
+#mpris{
+  background: rgba(245, 169, 127, 0.8);
+  color: #181926;
+  font-weight: 400;
+  border-radius: 14px;
+  margin-right: 20px;
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); */
+}
+
+/* ========== LOGO =========== */
+#custom-logo{
+  color: #8bacf4;
+}
+
+/* ========== SYSTEM GROUP ========== */ 
+#system{
+  margin: 4px 4px;
+  padding: 8px 20px;
+
+}
+
+#idle_inhibitor,
+#bluetooth,
+#battery,
+#network{
+  background: transparent;
+  font-weight: 500;
+  margin: 0px 4px;
+}
+
+#idle_inhibitor{
+  background: transparent;
+}
+
+#bluetooth.connected{
+  color: #8bacf4;
+  font-weight: 500;
+}
+
+#network.disconnected {
+  color: #f38ba8;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: #a6e3a1;
+}
+#battery.warning {
+  color: #f9e2af;
+}
+#battery.critical {
+  color: #f38ba8;
+}
+
+/* ========== MONITOR GROUP ========== */ 
+#monitor{
+  /* background: #db8b79; */ 
+  margin: 4px;
+}
+
+#clock {
+  background: transparent;
+  font-weight: 500;
+  /* color: #4c4e68; */
+}
+
+#cpu{
+  background: transparent;
+  /* color:  */
+  font-weight: 500;
+}
+
+#memory{
+  background: transparent;
+}
+
+/* ========= AGENDA =========== */ 
+#custom-agenda{
+  background: rgba(23, 146, 153, 0.8);
+  color: #181926;
+  margin-left: 20px;
+}
+
+#custom-agenda.soon{
+  background: rgba(230, 69, 83, 0.8);
+  color: #181926;
+  margin-left: 40px;
+}
+
+/* ========== VOLUME ========== */
+
+#pulseaudio.muted {
+  color: #9399b2;
+  background: transparent;
+}
+
+#pulseaudio-slider {
+    background: transparent;
+    padding: 1px 1px;
+    margin: 0px 0px;
+}
+#pulseaudio-slider slider {
+    background: transparent;
+    min-height: 0px;
+    min-width: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    background: transparent;
+    min-height: 10px;
+    min-width: 80px;
+    border-radius: 5px;
+    background: black;
+}
+#pulseaudio-slider highlight {
+    background: transparent;
+    min-width: 10px;
+    border-radius: 5px;
+    background: #a6da95;
+}
+
+/* ========== TOOLTIP ========== */
+tooltip {
+  background: rgba(30, 30, 46, 0.9);
+  color: #cdd6f4;
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-weight:400;
+}
+
+/* ========== TRAY ========== */
+#tray {
+  padding: 0 12px;
+}
+
+/* ========== FLOATING VISUAL STYLE (Hyprland) ========== */
+/*
+  In your Hyprland.conf, add:
+  layerrule = blur,waybar
+  layerrule = ignorezero,waybar
+  layerrule = dimaround,waybar
+*/
