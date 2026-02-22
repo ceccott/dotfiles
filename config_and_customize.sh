@@ -1,24 +1,18 @@
 #! /bin/bash
 
-
 NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraMono.zip"
 
 echo "-> NERD FONT INSTALL"
 mkdir $HOME/.fonts
-wget $NERD_FONT_URL  -O font.zip
+wget $NERD_FONT_URL -O font.zip
 unzip font.zip -d ~/.fonts/
 fc-cache -fv
 
 echo "->TMUX CONFIG"
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
-echo "->VIM CONFIG"
-mkdir -p .vim/tmp
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-
 echo "->ZSH AND SPACESHIP PROMPT CONFIG"
-ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 git clone https://github.com/jocelynmallon/zshmarks.git ${ZSH_CUSTOM}/plugins/zshmarks
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
 git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM}/plugins/zsh-vi-mode
