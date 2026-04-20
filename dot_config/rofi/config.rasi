@@ -1,0 +1,10 @@
+
+@theme "/usr/share/rofi/themes/material.rasi"
+
+configuration { 
+  modi: "drun,filebrowser,calc,ssh";
+  show-icons: true;
+  font: "FiraMono Nerd Font 12";
+  // kb-mode-next: "Tab";
+  // kb-mode-previous: "Shift+Tab";
+}

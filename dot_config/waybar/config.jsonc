@@ -1,0 +1,245 @@
+{
+  // Waybar Configuration – Omarchy Floating Style
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "height": 58,
+  "spacing": 4,
+
+  // --- Module placement ---
+  "modules-left": [
+    "custom/logo",
+    "group/monitor"
+  ],
+  "modules-center": [
+    "custom/agenda",
+    // "custom/update",
+    "sway/workspaces"
+  ],
+  "modules-right": [
+    "mpris",// Music player
+    "tray",
+    "group/audio",
+    "group/system"
+  ],
+
+  // --- Workspace module ---
+"sway/workspaces": {
+  "on-click": "activate",
+  "format": "{name}",
+  // "format-icons": {
+  //   "default": " ",
+  //   "active": " " 
+  //   // "1": "",
+  //   // "2": "",
+  //   // "3": "",
+  //   // "4": "",
+  //   // "5": "",
+  //   // "urgent": "",
+  // },
+  "persistent-workspaces": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": []
+  }
+},
+
+  // --- Omarchy menu button ---
+  "custom/logo": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "rofi -show drun",
+    "on-click-right": "xdg-terminal-exec",
+    "tooltip-format": "Menu\n\nSuper + Alt + Space"
+  },
+
+  "custom/divider": {
+    "format": " | ",
+    "tooltip": false,
+  },
+
+  // --- Update indicator ---
+  // "custom/update": {
+  //   "format": "",
+  //   "exec": "omarchy-update-available",
+  //   "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+  //   "tooltip-format": "Omarchy update available",
+  //   "signal": 7,
+  //   "interval": 3600
+  // },
+
+  // --- Group: system status ---
+  "group/system": {
+    "orientation": "inherit",
+    "modules": [
+      "idle_inhibitor",
+      "custom/divider",
+      "bluetooth",
+      "custom/divider",
+      "network",
+      "custom/divider",
+      "battery"
+      // "custom/screenrecording-indicator" // Moved from center
+    ]
+  },
+
+  "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+          "activated": "󰅶",
+          "deactivated": "󰾪"
+      }
+  },
+
+  "tray": {
+    "icon-size": 24,
+    "spacing": 14
+  },
+
+  // --- Individual modules ---
+  "cpu": {
+      "interval": 5,
+      "format": "󰍛 {usage}%",
+      "on-click": "btop"
+  },
+
+  "memory": {
+      "interval": 5,
+      "format": "  {}%",
+      "max-length": 10
+  },
+
+  "custom/gpu": {
+    "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+    "format": " {}%",
+    "return-type": "",
+    "interval": 4
+  },
+
+  "clock": {
+    "format": "{:L%d %b %H:%M}",
+    "format-alt": "{:L%d %B W%V %Y}",
+    "tooltip": false,
+    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
+  },
+
+  "network": {
+    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "kitty -- impala"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "kitty -- bluetui"
+  },
+
+  "group/audio":{
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 400,
+      // "children-class": "not-power",
+      "transition-left-to-right": true,
+    },
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider"
+    ]
+  },
+
+  "group/monitor":{
+    "orientation": "horizontal",
+    "modules": [
+      "clock",
+      "custom/divider",
+      "cpu",
+      "custom/divider",
+      "memory",
+      "custom/divider",
+      "custom/gpu"
+    ]
+  },
+
+
+  "pulseaudio": {
+    "format": "{icon} ",
+    "on-click": " pactl set-sink-mute 0 toggle",
+    "on-click-right": "wiremix",
+    "tooltip":false,
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "format-muted": " ",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 120,
+    "orientation": "horizontal"
+  }, 
+
+  /* =============== MUSIC PLAYER =========== */ 
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} {dynamic}",
+    "dynamic-len": 30,
+    "dynamic-order": ["title", "artist", "album"],
+    "player-icons": {
+      "default": "▶",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "⏸"
+    },
+    // "ignored-players": ["firefox"]
+  },
+
+  /* ================ CALENDAR ============= */
+  "custom/agenda": {
+      "format": "{json:text}",
+      "exec": "nextmeeting --waybar",
+      // "on-click-right": "nextmeeting --open-meet-url",
+      "on-click": "kitty -- /bin/bash -c \"batz;echo;cal -3;echo;nextmeeting;read;\"",
+      "interval": 5,
+      "return-type": "json",
+      "tooltip": true,
+      "tooltip-format": "{json:tooltip}"
+  },
+}
